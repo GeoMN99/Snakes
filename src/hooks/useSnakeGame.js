@@ -112,5 +112,21 @@ export function useSnakeGame() {
 
             return () => clearInterval(interval)
         }, [gameState, speed])
+
+        // Keyboard controls
+        useEffect(() => {
+            const handleKey = (e) => {
+                const allKeys = [
+                    'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+                    'w', 'a', 's', 'd', 'Enter', ' ',
+                ]
+                if (allKeys.includes(e.key)) e.preventDefault()
+                
+                if (e.key === 'Enter' || e.key === ' ') {
+                    if (gameState !== 'playing') startGame()
+                    return    
+                }    
+            }
+        })
     })
 }
