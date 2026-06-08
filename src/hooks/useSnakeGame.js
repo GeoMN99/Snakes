@@ -90,7 +90,27 @@ export function useSnakeGame() {
                 return
             }
 
-            
-        })
+            const ateFood =
+              newHead.x === foodRef.current.x && newHead.y === foodRef.current.y
+
+            if (ateFood) {
+                const newSnake = [newHead, ...currentSnake]
+                const newFood = getRandomFood(newSnake)
+                const newScore = scoreRef.current + 1
+                snakeRef.current = newSnake
+                foodRef.current = newFood
+                scoreRef.current = newScore
+                setSnake(newSnake)
+                setFood(newFood)
+                setScore(newScore)
+            }   else {
+                const newSnake = [newHead, ...currentSnake.slice(0, -1)]
+                snakeRef.current = newSnake
+                setSnake(newSnake)
+                }
+            }, speed)
+
+            return () => clearInterval(interval)
+        }, [gameState, speed])
     })
 }
