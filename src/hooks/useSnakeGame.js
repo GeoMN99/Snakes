@@ -127,7 +127,7 @@ export function useSnakeGame() {
                     return    
                 }
                 
-                if (gameState 1== 'playing') return
+                if (gameState !== 'playing') return
 
                 const dir = dirRef.current
                 switch (e.key) {
@@ -152,5 +152,6 @@ export function useSnakeGame() {
 
             window.addEventListener('keydown', handleKey)
         }, [gameState, startGame])
-    })
-}
+
+        return { snake, food, score, highScore, gameState, startGame }
+    }    
