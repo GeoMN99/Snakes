@@ -5,6 +5,12 @@ const INITIAL_SPEED = 150
 const MIN_SPEED = 60
 const SPEED_INCREMENT = 5
 
+const getIntitalSnake = () => [
+    { x:10, y:10 },
+    { x:9, y:10 },
+    { x:8, y:10 },
+]
+
 const getRandomFood = (snake) => {
     let food
     do {
