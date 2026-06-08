@@ -51,4 +51,19 @@ export function useSnakeGame() {
         setScore(0)
         setGameState('playing')
     }, [])
+
+    // Game loop
+    useEffect(() => {
+        if (gameState !== 'playing') return
+
+        const interval = setInterval(() => {
+            dirRef.current = nextDirRef.current
+            const dir =dirRef.current
+            const currentSnake = snakeRef.current
+            const head =currentSnake[0]
+            const newHead = { x: head.x + dir.x, y: head.y + dir.y }
+
+            
+        })
+    })
 }
