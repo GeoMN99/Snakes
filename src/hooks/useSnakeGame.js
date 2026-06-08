@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef, use, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 export const GRID_SIZE = 20
 const INITIAL_SPEED = 150
 const MIN_SPEED = 60
 const SPEED_INCREMENT = 5
 
-const getIntitalSnake = () => [
+const getInitialSnake = () => [
     { x:10, y:10 },
     { x:9, y:10 },
     { x:8, y:10 },
@@ -26,7 +26,7 @@ export function useSnakeGame() {
     const [snake, setSnake] = useState(getInitialSnake)
     const [food, setFood] = useState({ x:15, y:10 })
     const [score, setScore] = useState(0)
-    const [highscore, setHighScore] =useState(
+    const [highScore, setHighScore] =useState(
         () => parseInt(localStorage.getItem('snakeHighScore') || '0')
     )
     const [gameState, setGameState] = useState('idle')
@@ -151,6 +151,7 @@ export function useSnakeGame() {
             }
 
             window.addEventListener('keydown', handleKey)
+            return () => window.removeEventListener('keydown', handleKey)
         }, [gameState, startGame])
 
         return { snake, food, score, highScore, gameState, startGame }
