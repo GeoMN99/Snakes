@@ -3,7 +3,7 @@ import GameBoard from './components/GameBoard'
 import './App.css'
 
 function App() {
-  const { snake, food, score, highScore, gameStats, startGame } = useSnakeGame()
+  const { snake, food, score, highScore, gameState, startGame } = useSnakeGame()
 
   return (
     <div className="app">
