@@ -63,6 +63,33 @@ export function useSnakeGame() {
             const head =currentSnake[0]
             const newHead = { x: head.x + dir.x, y: head.y + dir.y }
 
+            // Wall collision
+            if (
+                newHead.x < 0 || newHead.x >= GRID_SIZE ||
+                newHead.y < 0 || newHead.y >= GRID_SIZE
+            ) {
+                const final =scoreRef.current
+                setHighScore(prev => {
+                    const updated = Math.max(prev, final)
+                    localStorage.setItem('snakeHighScore', String(updated))
+                    return updated
+                })
+                setGameState('gameover')
+                return
+            }
+
+            // Self collision
+            if (currentSnake.some(seg => seg.x === newHead.x && seg.y === newHead.y)) {
+                const final = scoreRef.current
+                setHighScore(prev => {
+                    const updated = Math.max(prev, final)
+                    localStorage.setItem('snakeHighScore', String(updated))
+                    return updated
+                })
+                setGameState('gameover')
+                return
+            }
+
             
         })
     })
