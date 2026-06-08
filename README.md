@@ -1,16 +1,28 @@
-# React + Vite
+# Snake
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A classic Snake game built with React and Vite, deployed on GitHub Pages.
 
-Currently, two official plugins are available:
+## Play
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[Play Snake](https://GeoMN99.github.io/Snakes/)
 
-## React Compiler
+## How to Play
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Use **Arrow Keys** or **WASD** to control the snake
+- Eat the red food to grow and increase your score
+- Avoid hitting the walls or yourself
+- The snake speeds up as your score increases
+- Press **Enter** or **Space** to start or restart
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Arrow key and WASD controls
+- Speed progression as the snake grows
+- High score saved between sessions
+- Keyboard-accessible start and restart
+
+## Built With
+
+- React
+- Vite
+- GitHub Pages
