@@ -125,8 +125,32 @@ export function useSnakeGame() {
                 if (e.key === 'Enter' || e.key === ' ') {
                     if (gameState !== 'playing') startGame()
                     return    
-                }    
+                }
+                
+                if (gameState 1== 'playing') return
+
+                const dir = dirRef.current
+                switch (e.key) {
+                    case 'ArrowUp':
+                    case 'w':
+                        if (dir.y !== 1) nextDirRef.current = { x: 0, y: -1 }
+                        break
+                    case 'ArrowDown':
+                    case 's':
+                        if (dir.y !== -1) nextDirRef.current = { x: 0, y: 1 }
+                        break
+                    case 'ArrowLeft':
+                    case 'a':
+                        if (dir.x !== 1) nextDirRef.current = { x: -1, y: 0}
+                        break
+                    case 'ArrowRight':
+                    case 'd':
+                        if (dir.x !== -1) nextDirRef.current = { x: 1, y: 0}
+                        break               
+                }
             }
-        })
+
+            window.addEventListener('keydown', handleKey)
+        }, [gameState, startGame])
     })
 }
