@@ -1,9 +1,47 @@
+import { useRef } from 'react'
 import { useSnakeGame } from './hooks/useSnakeGame'
 import GameBoard from './components/GameBoard'
 import './App.css'
 
 function App() {
-  const { snake, food, score, highScore, gameState, startGame } = useSnakeGame()
+  const { snake, food, score, highScore, gameState, startGame, changeDirection } = useSnakeGame()
+
+  const touchStartRef = useRef(null)
+
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0]
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY }
+  }
+
+  const handleTouchEnd = (e) => {
+    if (!touchStartRef.current) return
+
+    const touch = e.changedTouches[0]
+    const dx = touch.clientX - touchStartRef.current.x
+    const dy = touch.clientY - touchStartRef.current.y
+    const absDx = Math.abs(dx)
+    const absDy = Math.abs(dy)
+
+    const SWIPE_THRESHOLD = 30
+    if (Math.max(absDx, absDy) < SWIPE_THRESHOLD) {
+      touchStartRef.current = null
+      return
+    }
+
+    if (gameState !== 'playing') {
+      startGame()
+      touchStartRef.current = null
+      return
+    }
+
+    if (absDx > absDy) {
+      changeDirection({ x: dx > 0 ? 1 : -1, y: 0 })
+    } else {
+      changeDirection({ x: 0, y: dy > 0 ? 1 : -1 })
+    }
+
+    touchStartRef.current = null
+  }
 
   return (
     <div className="app">
@@ -20,7 +58,11 @@ function App() {
         </div>
       </div>
 
-      <div className="board-wrapper">
+      <div
+        className="board-wrapper"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <GameBoard snake={snake} food={food} />
 
         {gameState !== 'playing' && (
@@ -30,7 +72,7 @@ function App() {
                 <h2>Snake</h2>
                 <p>Arrow keys or WASD to move</p>
                 <button onClick={startGame}>Start Game</button>
-                <p className="hint">or press Enter / Space</p>
+                <p className="hint">or press Enter / Space / Swipe</p>
               </>
             )}
             {gameState === 'gameover' && (
@@ -41,10 +83,10 @@ function App() {
                   <p className="new-best">New Best!</p>
                 )}
                 <button onClick={startGame}>Play Again</button>
-                <p className="hint">or press Enter / Space</p>
+                <p className="hint">or press Enter / Space / Swipe</p>
               </>
             )}
-            </div>
+          </div>
         )}
       </div>
     </div>

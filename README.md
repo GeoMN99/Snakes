@@ -9,14 +9,16 @@ A classic Snake game built with React and Vite, deployed on GitHub Pages.
 ## How to Play
 
 - Use **Arrow Keys** or **WASD** to control the snake
+- **Swipe** in any direction to control the snake (mobile)
 - Eat the red food to grow and increase your score
 - Avoid hitting the walls or yourself
 - The snake speeds up as your score increases
-- Press **Enter** or **Space** to start or restart
+- Press **Enter**, or **Space**, or **swipe** to start or restart
 
 ## Features
 
 - Arrow key and WASD controls
+- Mobile-responsive board sizing
 - Speed progression as the snake grows
 - High score saved between sessions
 - Keyboard-accessible start and restart
